@@ -1,37 +1,11 @@
 
-# Customer K8S service
+# POD operator to scaling pod's configured on git manitfests
 
-## Flyway and build
-* gradle bootRun 
-* http://localhost:8080/customers
-* gradle copyDockerFile
-* gradle generateHelmChart
+write kubernetes controller with java kubernetes client api to read yaml config from git with jgit
+to scaling pods, build with gradle and provide helm chart and package and publish to helm repository
 
 
-## Kubectl
-
-* kubectl logs -f -l xxx -n myspace
-* kubectl rollout restart deploy mydeployment -n myspace
-* kubectl scale deploy mydeploy --replicas=0 -n myspace
-* kubectl logs --tail=300 -l xxx -n myspace -c init
-* kubectl port-forward pods/xxx 8080:8080 -n xxx
-
-## az
-* az account get-access-token -- resource api://my.com -o tsv --query accessToken
-* az login
-* az account set -s "xxx"
-* az aks list -o table
-* az acr login -n xxx
-* az acr helm repo add -n xxx
-
-
-
-
-
-## helm
-
-* helm search repo xxx
-* helm show values xxx/xxx
-* helm show chart xxx/xxx
-* helm template . --name-template=customer-service
- 
+. gradle init --type java-application
+. helm create git-config-pod-scaler
+. helm package git-config-pod-scaler
+. helm repo index ./ --url http://your-helm-repo-url

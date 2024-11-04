@@ -1,0 +1,4 @@
+replicaCount: 1
+image:
+  repository: your-repo/git-config-pod-scaler
+  tag: "latest"
