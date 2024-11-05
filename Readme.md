@@ -1,11 +1,12 @@
 
-# POD operator to scaling pod's configured on git manitfests
+# POD operator to scaling pod's based on desired state configured on YAML manifest external managed on git repo.
 
-write kubernetes controller with java kubernetes client api to read yaml config from git with jgit
-to scaling pods, build with gradle and provide helm chart and package and publish to helm repository
+This setup provides a basic structure for a Kubernetes controller using Java that scales pods based on a YAML configuration from an external Git repository, along with a Helm chart, Dockerfile, Gradle build script, and a Jenkins pipeline. Adjust paths and parameters according to your specific environment and needs.
 
 
-. gradle init --type java-application
-. helm create git-config-pod-scaler
-. helm package git-config-pod-scaler
-. helm repo index ./ --url http://your-helm-repo-url
+my-controller/
+├── Chart.yaml
+├── values.yaml
+└── templates/
+├── deployment.yaml
+├── service.yaml

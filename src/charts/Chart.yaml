@@ -1,4 +1,0 @@
-apiVersion: v2
-name: git-config-pod-scaler
-description: A Helm chart to deploy a Kubernetes controller that scales pods based on Git configuration.
-version: 0.1.0

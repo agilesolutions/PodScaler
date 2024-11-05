@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '3.2.2'
+}
+
+apply plugin : 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+
+group 'com.agilesolutions.k8s'
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes:1.1.10.RELEASE'
+    implementation 'org.yaml:snakeyaml:1.30'
+    implementation 'io.fabric8:kubernetes-client:5.12.0'
+}
+
+
+task helmPackage(type: Exec) {
+    commandLine 'helm', 'package', 'my-controller'
+}
+
+task dockerBuild(type: Exec) {
+    commandLine 'docker', 'build', '-t', 'your-repo/my-controller:latest', '.'
+}
+
+build.dependsOn(helmPackage, dockerBuild)
